@@ -1,0 +1,44 @@
+# Synthetic lane contract check, not a captured phone route. Repeats through Replay/PhoneLink.
+active=1
+type=2
+dist=250
+step=400
+street=Lane check: right preferred
+rtt=600
+dest=2500
+lanes=3
+lane0=0,0,1000,-90
+lane1=1,1,1000,0
+lane2=2,2,90,0
+--- 6000
+active=1
+type=3
+dist=200
+step=400
+street=Lane check: middle preferred
+rtt=590
+dest=2300
+lanes=3
+lane0=0,0,1000,-90
+lane1=1,2,1000,0
+lane2=2,0,1000,0,90
+--- 6000
+active=1
+type=3
+dist=180
+street=Lane check: hidden
+lanes=0
+--- 5000
+active=1
+type=1
+dist=150
+step=400
+street=Lane check: two left lanes
+lanes=4
+lane0=0,2,1000,-90
+lane1=1,2,1000,-45
+lane2=2,0,1000,0
+lane3=3,2,1000,1000
+--- 6000
+active=0
+--- 5000

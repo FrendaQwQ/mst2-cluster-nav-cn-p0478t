@@ -1,0 +1,8 @@
+# Service in /tsd/etc/system/cpu.conf, then the library (from native/build) it preloads.
+# The installer copies each library to /tsd/lib/mst2-cluster-nav/ and appends it to the
+# service's LD_PRELOAD.
+iMX6.SAL libmcn_sal.so
+iMX6.DispMg libmcn_dm.so
+# Child payload, copied next to the others: SAL's spawn hook adds it to mm-ipod only, when it is
+# there (no cpu.conf service).
+child:mm-ipod libmcn_ipod.so

@@ -1,0 +1,121 @@
+###########################################################################################
+#
+# mst2-cluster-nav - phone navigation on the instrument cluster
+# Copyright (c) 2026 Anton Perk. CC BY-NC-SA 4.0
+#
+# Main -> MIB STD2 Toolbox Main -> Customization -> Cluster navigation
+#
+###########################################################################################
+screen Cluster_Navigation Customization
+
+keyValue
+    value   String sys 0x00000000 0
+    label   "Phone navigation on the instrument cluster - mst2-cluster-nav by Anton Perk"
+    poll    0
+
+keyValue
+    value   String sys 0x00000000 0
+    label   "Install arms ONE trial boot. Emergency: SD card with file mst2-cluster-nav-disable."
+    poll    0
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_install.sh"
+    label   "Install / update (next boot is a trial)"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_enable.sh"
+    label   "Enable permanently"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_trial.sh"
+    label   "Arm another trial boot"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_disable.sh"
+    label   "Disable"
+
+keyValue
+    value   String sys 0x00000000 0
+    label   "Cluster view:"
+    poll    0
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_auto.sh"
+    label   "Auto (phone map when the app provides it, otherwise native arrows)"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_arrows.sh"
+    label   "Native arrows only"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_map.sh"
+    label   "Phone map"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_fps30.sh"
+    label   "Phone map: 30 fps"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_fps25.sh"
+    label   "Phone map: 25 fps (default)"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_fps20.sh"
+    label   "Phone map: 20 fps (if the cluster video stutters)"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_fps10.sh"
+    label   "Phone map: 10 fps"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_keyframe0.sh"
+    label   "Phone map: key frame only when needed (default)"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_keyframe2.sh"
+    label   "Phone map: key frame every 2 s (if the picture breaks up)"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_keyframe1.sh"
+    label   "Phone map: key frame every second"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_scene-map.sh"
+    label   "Phone map: map only (default)"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_scene-app.sh"
+    label   "Phone map: with the app's maneuver card (experimental, covers much of the map)"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_display.sh"
+    label   "Phone map: own size and safe area from mst2-cluster-nav-display.txt on the card"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_display-reset.sh"
+    label   "Phone map: default size and safe area"
+
+keyValue
+    value   String sys 0x00000000 0
+    label   ""
+    poll    0
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_demo-on.sh"
+    label   "Demo guidance on (check the install without a phone)"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_demo-off.sh"
+    label   "Demo guidance off"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_status.sh"
+    label   "Status"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_set_diag.sh"
+    label   "Save diagnostics to the SD card (run with CarPlay connected, after a drive)"
+
+script
+    value   sys 1 0x0100 "/tsd/etc/persistence/esd/scripts/mcn_uninstall.sh"
+    label   "Uninstall"

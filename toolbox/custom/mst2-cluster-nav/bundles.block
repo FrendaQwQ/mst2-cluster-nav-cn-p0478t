@@ -1,0 +1,4 @@
+# >>> mst2-cluster-nav
+Bundle.Name.58 = ClusterNav
+Bundle.Activator.58 = mst2.clusternav.Activator
+# <<< mst2-cluster-nav

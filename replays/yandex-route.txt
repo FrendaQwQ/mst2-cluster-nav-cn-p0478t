@@ -1,0 +1,2035 @@
+# Yandex Maps route read off its CarPlay cluster stream (CarPlay Simulator, 2026-10-26):
+# maneuver types and distances from the cards; street names replaced by placeholders.
+# PhoneLink messages, "--- ms" between them.
+active=1
+type=4
+angle=-170
+lht=0
+dist=160
+step=160
+street=
+rtt=199
+dest=2390
+--- 1000
+active=1
+type=4
+angle=-170
+lht=0
+dist=148
+step=160
+street=
+rtt=198
+dest=2378
+--- 1000
+active=1
+type=4
+angle=-170
+lht=0
+dist=136
+step=160
+street=
+rtt=197
+dest=2366
+--- 1000
+active=1
+type=4
+angle=-170
+lht=0
+dist=124
+step=160
+street=
+rtt=196
+dest=2354
+--- 1000
+active=1
+type=4
+angle=-170
+lht=0
+dist=112
+step=160
+street=
+rtt=195
+dest=2342
+--- 1000
+active=1
+type=4
+angle=-170
+lht=0
+dist=100
+step=160
+street=
+rtt=194
+dest=2330
+--- 1000
+active=1
+type=4
+angle=-170
+lht=0
+dist=88
+step=160
+street=
+rtt=193
+dest=2318
+--- 1000
+active=1
+type=4
+angle=-170
+lht=0
+dist=76
+step=160
+street=
+rtt=192
+dest=2306
+--- 1000
+active=1
+type=4
+angle=-170
+lht=0
+dist=64
+step=160
+street=
+rtt=191
+dest=2294
+--- 1000
+active=1
+type=4
+angle=-170
+lht=0
+dist=52
+step=160
+street=
+rtt=190
+dest=2282
+--- 1000
+active=1
+type=4
+angle=-170
+lht=0
+dist=40
+step=160
+street=
+rtt=189
+dest=2270
+--- 1000
+active=1
+type=4
+angle=-170
+lht=0
+dist=28
+step=160
+street=
+rtt=188
+dest=2258
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=80
+step=80
+street=Улица 1
+rtt=187
+dest=2246
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=68
+step=80
+street=Улица 1
+rtt=186
+dest=2234
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=56
+step=80
+street=Улица 1
+rtt=185
+dest=2222
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=44
+step=80
+street=Улица 1
+rtt=184
+dest=2210
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=32
+step=80
+street=Улица 1
+rtt=183
+dest=2198
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=20
+step=80
+street=Улица 1
+rtt=182
+dest=2186
+--- 1000
+active=1
+type=47
+angle=-135
+lht=0
+dist=110
+step=110
+street=Улица 2
+rtt=181
+dest=2174
+--- 1000
+active=1
+type=47
+angle=-135
+lht=0
+dist=98
+step=110
+street=Улица 2
+rtt=180
+dest=2162
+--- 1000
+active=1
+type=47
+angle=-135
+lht=0
+dist=86
+step=110
+street=Улица 2
+rtt=179
+dest=2150
+--- 1000
+active=1
+type=47
+angle=-135
+lht=0
+dist=74
+step=110
+street=Улица 2
+rtt=178
+dest=2138
+--- 1000
+active=1
+type=47
+angle=-135
+lht=0
+dist=62
+step=110
+street=Улица 2
+rtt=177
+dest=2126
+--- 1000
+active=1
+type=47
+angle=-135
+lht=0
+dist=50
+step=110
+street=Улица 2
+rtt=176
+dest=2114
+--- 1000
+active=1
+type=47
+angle=-135
+lht=0
+dist=38
+step=110
+street=Улица 2
+rtt=175
+dest=2102
+--- 1000
+active=1
+type=47
+angle=-135
+lht=0
+dist=26
+step=110
+street=Улица 2
+rtt=174
+dest=2090
+--- 1000
+active=1
+type=47
+angle=-135
+lht=0
+dist=14
+step=110
+street=Улица 2
+rtt=173
+dest=2078
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=60
+step=60
+street=Улица 3
+rtt=172
+dest=2066
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=48
+step=60
+street=Улица 3
+rtt=171
+dest=2054
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=36
+step=60
+street=Улица 3
+rtt=170
+dest=2042
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=24
+step=60
+street=Улица 3
+rtt=169
+dest=2030
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=12
+step=60
+street=Улица 3
+rtt=168
+dest=2018
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=560
+step=560
+street=Улица 4
+rtt=167
+dest=2006
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=548
+step=560
+street=Улица 4
+rtt=166
+dest=1994
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=536
+step=560
+street=Улица 4
+rtt=165
+dest=1982
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=524
+step=560
+street=Улица 4
+rtt=164
+dest=1970
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=512
+step=560
+street=Улица 4
+rtt=163
+dest=1958
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=500
+step=560
+street=Улица 4
+rtt=162
+dest=1946
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=488
+step=560
+street=Улица 4
+rtt=161
+dest=1934
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=476
+step=560
+street=Улица 4
+rtt=160
+dest=1922
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=464
+step=560
+street=Улица 4
+rtt=159
+dest=1910
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=452
+step=560
+street=Улица 4
+rtt=158
+dest=1898
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=440
+step=560
+street=Улица 4
+rtt=157
+dest=1886
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=428
+step=560
+street=Улица 4
+rtt=156
+dest=1874
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=416
+step=560
+street=Улица 4
+rtt=155
+dest=1862
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=404
+step=560
+street=Улица 4
+rtt=154
+dest=1850
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=392
+step=560
+street=Улица 4
+rtt=153
+dest=1838
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=380
+step=560
+street=Улица 4
+rtt=152
+dest=1826
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=368
+step=560
+street=Улица 4
+rtt=151
+dest=1814
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=356
+step=560
+street=Улица 4
+rtt=150
+dest=1802
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=344
+step=560
+street=Улица 4
+rtt=149
+dest=1790
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=332
+step=560
+street=Улица 4
+rtt=148
+dest=1778
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=320
+step=560
+street=Улица 4
+rtt=147
+dest=1766
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=308
+step=560
+street=Улица 4
+rtt=146
+dest=1754
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=296
+step=560
+street=Улица 4
+rtt=145
+dest=1742
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=284
+step=560
+street=Улица 4
+rtt=144
+dest=1730
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=272
+step=560
+street=Улица 4
+rtt=143
+dest=1718
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=260
+step=560
+street=Улица 4
+rtt=142
+dest=1706
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=248
+step=560
+street=Улица 4
+rtt=141
+dest=1694
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=236
+step=560
+street=Улица 4
+rtt=140
+dest=1682
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=224
+step=560
+street=Улица 4
+rtt=139
+dest=1670
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=212
+step=560
+street=Улица 4
+rtt=138
+dest=1658
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=200
+step=560
+street=Улица 4
+rtt=137
+dest=1646
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=188
+step=560
+street=Улица 4
+rtt=136
+dest=1634
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=176
+step=560
+street=Улица 4
+rtt=135
+dest=1622
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=164
+step=560
+street=Улица 4
+rtt=134
+dest=1610
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=152
+step=560
+street=Улица 4
+rtt=133
+dest=1598
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=140
+step=560
+street=Улица 4
+rtt=132
+dest=1586
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=128
+step=560
+street=Улица 4
+rtt=131
+dest=1574
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=116
+step=560
+street=Улица 4
+rtt=130
+dest=1562
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=104
+step=560
+street=Улица 4
+rtt=129
+dest=1550
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=92
+step=560
+street=Улица 4
+rtt=128
+dest=1538
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=80
+step=560
+street=Улица 4
+rtt=127
+dest=1526
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=68
+step=560
+street=Улица 4
+rtt=126
+dest=1514
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=56
+step=560
+street=Улица 4
+rtt=125
+dest=1502
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=44
+step=560
+street=Улица 4
+rtt=124
+dest=1490
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=32
+step=560
+street=Улица 4
+rtt=123
+dest=1478
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=20
+step=560
+street=Улица 4
+rtt=122
+dest=1466
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=810
+step=810
+street=Улица 5
+rtt=121
+dest=1454
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=798
+step=810
+street=Улица 5
+rtt=120
+dest=1442
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=786
+step=810
+street=Улица 5
+rtt=119
+dest=1430
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=774
+step=810
+street=Улица 5
+rtt=118
+dest=1418
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=762
+step=810
+street=Улица 5
+rtt=117
+dest=1406
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=750
+step=810
+street=Улица 5
+rtt=116
+dest=1394
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=738
+step=810
+street=Улица 5
+rtt=115
+dest=1382
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=726
+step=810
+street=Улица 5
+rtt=114
+dest=1370
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=714
+step=810
+street=Улица 5
+rtt=113
+dest=1358
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=702
+step=810
+street=Улица 5
+rtt=112
+dest=1346
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=690
+step=810
+street=Улица 5
+rtt=111
+dest=1334
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=678
+step=810
+street=Улица 5
+rtt=110
+dest=1322
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=666
+step=810
+street=Улица 5
+rtt=109
+dest=1310
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=654
+step=810
+street=Улица 5
+rtt=108
+dest=1298
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=642
+step=810
+street=Улица 5
+rtt=107
+dest=1286
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=630
+step=810
+street=Улица 5
+rtt=106
+dest=1274
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=618
+step=810
+street=Улица 5
+rtt=105
+dest=1262
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=606
+step=810
+street=Улица 5
+rtt=104
+dest=1250
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=594
+step=810
+street=Улица 5
+rtt=103
+dest=1238
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=582
+step=810
+street=Улица 5
+rtt=102
+dest=1226
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=570
+step=810
+street=Улица 5
+rtt=101
+dest=1214
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=558
+step=810
+street=Улица 5
+rtt=100
+dest=1202
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=546
+step=810
+street=Улица 5
+rtt=99
+dest=1190
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=534
+step=810
+street=Улица 5
+rtt=98
+dest=1178
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=522
+step=810
+street=Улица 5
+rtt=97
+dest=1166
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=510
+step=810
+street=Улица 5
+rtt=96
+dest=1154
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=498
+step=810
+street=Улица 5
+rtt=95
+dest=1142
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=486
+step=810
+street=Улица 5
+rtt=94
+dest=1130
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=474
+step=810
+street=Улица 5
+rtt=93
+dest=1118
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=462
+step=810
+street=Улица 5
+rtt=92
+dest=1106
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=450
+step=810
+street=Улица 5
+rtt=91
+dest=1094
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=438
+step=810
+street=Улица 5
+rtt=90
+dest=1082
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=426
+step=810
+street=Улица 5
+rtt=89
+dest=1070
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=414
+step=810
+street=Улица 5
+rtt=88
+dest=1058
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=402
+step=810
+street=Улица 5
+rtt=87
+dest=1046
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=390
+step=810
+street=Улица 5
+rtt=86
+dest=1034
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=378
+step=810
+street=Улица 5
+rtt=85
+dest=1022
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=366
+step=810
+street=Улица 5
+rtt=84
+dest=1010
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=354
+step=810
+street=Улица 5
+rtt=83
+dest=998
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=342
+step=810
+street=Улица 5
+rtt=82
+dest=986
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=330
+step=810
+street=Улица 5
+rtt=81
+dest=974
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=318
+step=810
+street=Улица 5
+rtt=80
+dest=962
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=306
+step=810
+street=Улица 5
+rtt=79
+dest=950
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=294
+step=810
+street=Улица 5
+rtt=78
+dest=938
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=282
+step=810
+street=Улица 5
+rtt=77
+dest=926
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=270
+step=810
+street=Улица 5
+rtt=76
+dest=914
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=258
+step=810
+street=Улица 5
+rtt=75
+dest=902
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=246
+step=810
+street=Улица 5
+rtt=74
+dest=890
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=234
+step=810
+street=Улица 5
+rtt=73
+dest=878
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=222
+step=810
+street=Улица 5
+rtt=72
+dest=866
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=210
+step=810
+street=Улица 5
+rtt=71
+dest=854
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=198
+step=810
+street=Улица 5
+rtt=70
+dest=842
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=186
+step=810
+street=Улица 5
+rtt=69
+dest=830
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=174
+step=810
+street=Улица 5
+rtt=68
+dest=818
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=162
+step=810
+street=Улица 5
+rtt=67
+dest=806
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=150
+step=810
+street=Улица 5
+rtt=66
+dest=794
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=138
+step=810
+street=Улица 5
+rtt=65
+dest=782
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=126
+step=810
+street=Улица 5
+rtt=64
+dest=770
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=114
+step=810
+street=Улица 5
+rtt=63
+dest=758
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=102
+step=810
+street=Улица 5
+rtt=62
+dest=746
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=90
+step=810
+street=Улица 5
+rtt=61
+dest=734
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=78
+step=810
+street=Улица 5
+rtt=60
+dest=722
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=66
+step=810
+street=Улица 5
+rtt=59
+dest=710
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=54
+step=810
+street=Улица 5
+rtt=58
+dest=698
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=42
+step=810
+street=Улица 5
+rtt=57
+dest=686
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=30
+step=810
+street=Улица 5
+rtt=56
+dest=674
+--- 1000
+active=1
+type=2
+angle=90
+lht=0
+dist=18
+step=810
+street=Улица 5
+rtt=55
+dest=662
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=570
+step=570
+street=Улица 6
+rtt=54
+dest=650
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=558
+step=570
+street=Улица 6
+rtt=53
+dest=638
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=546
+step=570
+street=Улица 6
+rtt=52
+dest=626
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=534
+step=570
+street=Улица 6
+rtt=51
+dest=614
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=522
+step=570
+street=Улица 6
+rtt=50
+dest=602
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=510
+step=570
+street=Улица 6
+rtt=49
+dest=590
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=498
+step=570
+street=Улица 6
+rtt=48
+dest=578
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=486
+step=570
+street=Улица 6
+rtt=47
+dest=566
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=474
+step=570
+street=Улица 6
+rtt=46
+dest=554
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=462
+step=570
+street=Улица 6
+rtt=45
+dest=542
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=450
+step=570
+street=Улица 6
+rtt=44
+dest=530
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=438
+step=570
+street=Улица 6
+rtt=43
+dest=518
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=426
+step=570
+street=Улица 6
+rtt=42
+dest=506
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=414
+step=570
+street=Улица 6
+rtt=41
+dest=494
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=402
+step=570
+street=Улица 6
+rtt=40
+dest=482
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=390
+step=570
+street=Улица 6
+rtt=39
+dest=470
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=378
+step=570
+street=Улица 6
+rtt=38
+dest=458
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=366
+step=570
+street=Улица 6
+rtt=37
+dest=446
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=354
+step=570
+street=Улица 6
+rtt=36
+dest=434
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=342
+step=570
+street=Улица 6
+rtt=35
+dest=422
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=330
+step=570
+street=Улица 6
+rtt=34
+dest=410
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=318
+step=570
+street=Улица 6
+rtt=33
+dest=398
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=306
+step=570
+street=Улица 6
+rtt=32
+dest=386
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=294
+step=570
+street=Улица 6
+rtt=31
+dest=374
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=282
+step=570
+street=Улица 6
+rtt=30
+dest=362
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=270
+step=570
+street=Улица 6
+rtt=29
+dest=350
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=258
+step=570
+street=Улица 6
+rtt=28
+dest=338
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=246
+step=570
+street=Улица 6
+rtt=27
+dest=326
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=234
+step=570
+street=Улица 6
+rtt=26
+dest=314
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=222
+step=570
+street=Улица 6
+rtt=25
+dest=302
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=210
+step=570
+street=Улица 6
+rtt=24
+dest=290
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=198
+step=570
+street=Улица 6
+rtt=23
+dest=278
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=186
+step=570
+street=Улица 6
+rtt=22
+dest=266
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=174
+step=570
+street=Улица 6
+rtt=21
+dest=254
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=162
+step=570
+street=Улица 6
+rtt=20
+dest=242
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=150
+step=570
+street=Улица 6
+rtt=19
+dest=230
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=138
+step=570
+street=Улица 6
+rtt=18
+dest=218
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=126
+step=570
+street=Улица 6
+rtt=17
+dest=206
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=114
+step=570
+street=Улица 6
+rtt=16
+dest=194
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=102
+step=570
+street=Улица 6
+rtt=15
+dest=182
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=90
+step=570
+street=Улица 6
+rtt=14
+dest=170
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=78
+step=570
+street=Улица 6
+rtt=13
+dest=158
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=66
+step=570
+street=Улица 6
+rtt=12
+dest=146
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=54
+step=570
+street=Улица 6
+rtt=11
+dest=134
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=42
+step=570
+street=Улица 6
+rtt=10
+dest=122
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=30
+step=570
+street=Улица 6
+rtt=9
+dest=110
+--- 1000
+active=1
+type=50
+angle=40
+lht=0
+dist=18
+step=570
+street=Улица 6
+rtt=8
+dest=98
+--- 1000
+active=1
+type=10
+angle=0
+lht=0
+dist=120
+step=120
+street=
+rtt=7
+dest=86
+--- 1000
+active=1
+type=10
+angle=0
+lht=0
+dist=108
+step=120
+street=
+rtt=6
+dest=74
+--- 1000
+active=1
+type=10
+angle=0
+lht=0
+dist=96
+step=120
+street=
+rtt=5
+dest=62
+--- 1000
+active=1
+type=10
+angle=0
+lht=0
+dist=84
+step=120
+street=
+rtt=4
+dest=50
+--- 1000
+active=1
+type=10
+angle=0
+lht=0
+dist=72
+step=120
+street=
+rtt=3
+dest=38
+--- 1000
+active=1
+type=10
+angle=0
+lht=0
+dist=60
+step=120
+street=
+rtt=2
+dest=26
+--- 1000
+active=1
+type=10
+angle=0
+lht=0
+dist=48
+step=120
+street=
+rtt=1
+dest=14
+--- 1000
+active=1
+type=10
+angle=0
+lht=0
+dist=36
+step=120
+street=
+rtt=0
+dest=2
+--- 1000
+active=1
+type=10
+angle=0
+lht=0
+dist=24
+step=120
+street=
+rtt=0
+dest=0
+--- 1000
+active=1
+type=10
+angle=0
+lht=0
+dist=12
+step=120
+street=
+rtt=0
+dest=0
+--- 1000
+active=1
+type=10
+angle=0
+lht=0
+dist=0
+step=120
+street=
+rtt=0
+dest=0
+--- 1000
+active=0
+--- 5000

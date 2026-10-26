@@ -1,0 +1,57 @@
+# >>> mst2-cluster-nav (own HMI bundle, appended: no stock class is shadowed)
+# Guard, run on every HMI start. Each check can only make this HMI start without the mod; none
+# stops the script. Tools by absolute path (IFS /bin, system /usr/bin): no PATH is assumed.
+MCN=/tsd/var/mst2-cluster-nav
+MCN_CPU=/tsd/etc/system/cpu.conf
+MCN_OFF=
+for d in /media/mp00?; do
+  [ -e $d/mst2-cluster-nav-disable ] && MCN_OFF="kill switch on $d"
+done
+# The HMI starts again on this boot, and the mod was in it but had not settled (1 min): the mod
+# may be the cause, so it stays off until it is enabled again in GEM.
+if [ -e /dev/shmem/mst2-cluster-nav-on -a ! -e /dev/shmem/mst2-cluster-nav-hmi-ok ]; then
+  MCN_OFF="the HMI restarted before the mod settled"
+  /bin/rm -f $MCN/enabled $MCN/trial
+fi
+# The toolbox's "dual navigation" patch replaces stock HMI classes, and its restore copies an old
+# runHMI.sh over this block; Install refuses it, this catches it added later. Only the lines outside
+# this block count: the block itself names the patch's jar.
+if /usr/bin/sed '/^# >>> mst2-cluster-nav/,/^# <<< mst2-cluster-nav/d' /tsd/hmi/runHMI.sh |
+    /usr/bin/grep -q 'NavActiveIgnore.jar'; then
+  MCN_OFF="the toolbox dual navigation patch is active"
+fi
+# A library in LD_PRELOAD that cannot be loaded keeps SAL or DisplayManager from starting (the
+# unit then resets): if one is missing or empty, take every one of ours out of cpu.conf.
+MCN_FIX=
+for f in $(/usr/bin/sed -n 's#.*\(/tsd/[a-z]*/mst2-cluster-nav/[^: ]*\).*#\1#p' $MCN_CPU); do
+  [ -s $f ] || MCN_FIX=$f
+done
+if [ -n "$MCN_FIX" ]; then
+  MCN_OFF="$MCN_FIX missing: removed from cpu.conf"
+  if /bin/mount -t qnx6 -o remount,rw /dev/hd0t177 /; then
+    /usr/bin/sed -e '/^   envar LD_PRELOAD \/tsd\/[a-z]*\/mst2-cluster-nav\/[^:]*$/d' \
+      -e 's#:/tsd/[a-z]*/mst2-cluster-nav/[^: ]*##g' $MCN_CPU > $MCN_CPU.mcn &&
+      [ -s $MCN_CPU.mcn ] && /bin/mv -f $MCN_CPU.mcn $MCN_CPU
+    /bin/rm -f $MCN_CPU.mcn
+    /bin/mount -t qnx6 -o remount,ro /dev/hd0t177 /
+  fi
+  /bin/rm -f $MCN/enabled $MCN/trial
+fi
+if [ -n "$MCN_OFF" ]; then
+  echo "mst2-cluster-nav: off ($MCN_OFF)"
+  echo "$MCN_OFF" > $MCN/off-reason 2>/dev/null
+  # Off for the native hooks too, from their next check (2 s), not only from the next boot.
+  /usr/bin/touch /dev/shmem/mst2-cluster-nav-off
+  /bin/rm -f /dev/shmem/mst2-cluster-nav-on /dev/shmem/mst2-cluster-nav-trial
+elif [ -s $MCN/mst2-cluster-nav.jar ] &&
+    { [ -e $MCN/enabled -o -e /dev/shmem/mst2-cluster-nav-trial ] ||
+      [ -e $MCN/trial -a ! -e /dev/shmem/mst2-cluster-nav-armed ]; }; then
+  # A native part may have taken the trial already (/dev/shmem/mst2-cluster-nav-trial); a
+  # trial armed by GEM on this boot (-armed) is the next boot's.
+  [ -e /dev/shmem/mst2-cluster-nav-armed ] || /bin/rm -f $MCN/trial
+  /bin/rm -f /dev/shmem/mst2-cluster-nav-off
+  # Tells the native hooks (SAL, DisplayManager) that the mod runs on this boot.
+  /usr/bin/touch /dev/shmem/mst2-cluster-nav-on
+  BOOTCLASSPATH="$BOOTCLASSPATH:$MCN/mst2-cluster-nav.jar"
+fi
+# <<< mst2-cluster-nav
