@@ -12,7 +12,7 @@ BUNDLES=/tsd/hmi/HMI/config/bundles.properties
 CPU_CONF=/tsd/etc/system/cpu.conf
 BUNDLE_ID=58
 # HMI builds this mod was verified on; datapool ids differ between builds.
-HMI_VERSIONS="H29.319.120"
+HMI_VERSIONS="H29.319.93"
 
 # The toolbox card that holds custom/mst2-cluster-nav.
 mcn_card() {

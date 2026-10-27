@@ -53,9 +53,9 @@
  * "subs sb, r0, #0" at 0x126f78 (0480 tsd.mibstd2.system.displaymanager, sha256 932efd26...). */
 #define COMMON_LIB "libtsd.common.so"
 #define RING_ACQUIRE "_ZN3tsd6common9messaging6RingIO11writeAquireERPvRjb"
-#define MOST_SINK_CALL 0x126f74u
-#define MOST_SINK_RETURN 0x126f78u
-#define ARM_BL_ACQUIRE 0xebff9ffcu
+#define MOST_SINK_CALL 0x127138u
+#define MOST_SINK_RETURN 0x12713cu
+#define ARM_BL_ACQUIRE 0xebff9f8bu
 #define ARM_SUBS_SB_R0 0xe2509000u
 #define RING_WAIT_MS 300
 #define RING_REPORT_MS 10000

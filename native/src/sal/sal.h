@@ -7,6 +7,11 @@
 #ifndef MCN_SAL_H
 #define MCN_SAL_H
 
+/* CN0478T/791D test profile: 800x480 is user-reported, not measured.
+ * Safe area is a proportional mapping of upstream reference coordinates.
+ * Physical size is a UI-scale seed, not a panel measurement. Original notes
+ * below describe the upstream reference instrument, not verified 791D behavior. */
+
 #include "cf.h"
 #include "mcn_hook.h"
 
@@ -17,10 +22,10 @@
  * size offered is the panel's, about 244 x 91 mm. In the CarPlay Simulator (Yandex Maps) 192 to
  * 360 mm wide drew the same picture: the size only has to keep the aspect ratio.
  */
-#define MCN_CLUSTER_WIDTH 1010
-#define MCN_CLUSTER_HEIGHT 376
+#define MCN_CLUSTER_WIDTH 800
+#define MCN_CLUSTER_HEIGHT 480
 #define MCN_CLUSTER_WIDTH_MM 244
-#define MCN_CLUSTER_HEIGHT_MM 91
+#define MCN_CLUSTER_HEIGHT_MM 146
 #define MCN_CLUSTER_FPS 25
 /*
  * One safe area for every cluster view (mQbEMU research notes, gc-map-views.md: the cluster
@@ -31,10 +36,10 @@
  * the CarPlay Simulator Yandex Maps drew its maneuver card only with about 250 lines (186 or
  * 212 at this width: no card), and in this narrow area it keeps the car marker in the middle.
  */
-#define MCN_SAFE_X 377
-#define MCN_SAFE_Y 56
-#define MCN_SAFE_WIDTH 257
-#define MCN_SAFE_HEIGHT 250
+#define MCN_SAFE_X 299
+#define MCN_SAFE_Y 71
+#define MCN_SAFE_WIDTH 204
+#define MCN_SAFE_HEIGHT 319
 /* Ours; must differ from the main screen's, which is how the phone tells 111 from 110. */
 #define MCN_CLUSTER_UUID "4D434E00-0001-4000-8000-00000000006F"
 /*
