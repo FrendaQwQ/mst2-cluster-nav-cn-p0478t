@@ -8,7 +8,7 @@
 #define MCN_SAL_H
 
 /* CN0478T/791D test profile: 800x480 is user-reported, not measured.
- * SafeArea test: extend horizontal edges by 32 px and bottom by 16 px from the vehicle-tested profile.
+ * SafeArea test: extend horizontal edges by 128 px and bottom by 28 px from the vehicle-tested profile.
  * Physical size is a UI-scale seed, not a panel measurement. Original notes
  * below describe the upstream reference instrument, not verified 791D behavior. */
 
@@ -36,10 +36,10 @@
  * the CarPlay Simulator Yandex Maps drew its maneuver card only with about 250 lines (186 or
  * 212 at this width: no card), and in this narrow area it keeps the car marker in the middle.
  */
-#define MCN_SAFE_X 267
+#define MCN_SAFE_X 171
 #define MCN_SAFE_Y 71
-#define MCN_SAFE_WIDTH 268
-#define MCN_SAFE_HEIGHT 335
+#define MCN_SAFE_WIDTH 460
+#define MCN_SAFE_HEIGHT 347
 /* Ours; must differ from the main screen's, which is how the phone tells 111 from 110. */
 #define MCN_CLUSTER_UUID "4D434E00-0001-4000-8000-00000000006F"
 /*
