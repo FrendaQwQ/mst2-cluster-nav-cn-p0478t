@@ -14,18 +14,15 @@ BUNDLE_ID=58
 # Scratch space in RAM for comparisons.
 MCN_TMP=/dev/shmem
 # HMI builds this mod was verified on; datapool ids differ between builds.
-HMI_VERSIONS="H29.319.120"
+HMI_VERSIONS="H29.319.93"
 
-# The toolbox card that holds custom/mst2-cluster-nav. A card with the package's MANIFEST comes
-# first: the other slot may hold an older copy, or the repository's source tree (no MANIFEST).
+# The toolbox card that holds custom/mst2-cluster-nav.
 mcn_card() {
-  for f in MANIFEST .; do
-    for v in /media/mp00?; do
-      if [ -e $v/custom/mst2-cluster-nav/$f ]; then
-        echo $v
-        return 0
-      fi
-    done
+  for v in /media/mp00?; do
+    if [ -d $v/custom/mst2-cluster-nav ]; then
+      echo $v
+      return 0
+    fi
   done
   return 1
 }
@@ -134,15 +131,7 @@ mcn_arm_so() {
 # Prints what is wrong; changes nothing.
 mcn_verify_card() {
   if [ ! -s "$1/MANIFEST" ]; then
-    echo "$1/MANIFEST is missing. The folder holds:"
-    ls "$1"
-    if [ ! -e "$1/libmcn_sal.so" ]; then
-      echo "No libraries either: this is the source code, not the package."
-      echo "Download mst2-cluster-nav-<version>.zip from the release's"
-      echo "Assets (not 'Source code') and unzip it onto the card."
-    else
-      echo "Copy the whole package to the card again."
-    fi
+    echo "$1/MANIFEST is missing: copy the whole package to the card again."
     return 1
   fi
   bad=0

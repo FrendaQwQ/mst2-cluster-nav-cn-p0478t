@@ -29,7 +29,7 @@
 #define RING_SIZE   0x200000u
 #define SLICE_SIZE  0x80000u
 #define PS_SIZE     0x80000u
-#define ENC_STREAM  0x90000u   /* 1024 * 384 * 3/2 */
+#define ENC_STREAM  0x90000u   /* also fits one 800 * 480 NV12 frame (576000 bytes) */
 #define MAX_DEC_FB  22
 #define MAX_ENC_FB  6
 #define HEADER_MAX  256
@@ -449,9 +449,9 @@ static int bring_up(void)
     ep.chromaInterleave = 1;    /* NV12, like the decoded frame */
     ep.avc_deblkFilterOffsetAlpha = 6;
     ep.avc_chromaQpOffset = 10;
-    ep.avc_frameCroppingFlag = 1;
-    ep.avc_frameCropRight = MCN_TC_CROP_RIGHT;   /* 14 -> visible width 1010 */
-    ep.avc_frameCropBottom = MCN_TC_CROP_BOTTOM; /* 8  -> visible height 376 */
+    ep.avc_frameCroppingFlag = MCN_TC_CROP_RIGHT != 0 || MCN_TC_CROP_BOTTOM != 0;
+    ep.avc_frameCropRight = MCN_TC_CROP_RIGHT;
+    ep.avc_frameCropBottom = MCN_TC_CROP_BOTTOM;
     ep.userGamma = 0x6000;
     ep.RcIntervalMode = 1;
     ep.MESearchRange = 3;

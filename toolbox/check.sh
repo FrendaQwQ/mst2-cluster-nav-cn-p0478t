@@ -10,7 +10,7 @@ SCRIPTS="$HERE/custom/greenmenu/scripts"
 PKG="$HERE/custom/mst2-cluster-nav"
 BLOCK="$PKG/runHMI.block"
 STRIP="$(sed -n "s/^  sed '\(.*\)' \"\$1\"$/\1/p" "$SCRIPTS/mcn_common.sh")" # mcn_strip_block's
-printf '%s\n' '#!/bin/ksh' 'VERSION=H29.319.120' \
+printf '%s\n' '#!/bin/ksh' 'VERSION=H29.319.93' \
     'BOOTCLASSPATH="$IFSDIR/tsd.mibstd2.hmi.v2.jxe:$J9LIB/x.zip"' 'echo run' > "$T/stock.sh"
 sed '/^BOOTCLASSPATH="\$IFSDIR\/tsd.mibstd2.hmi.v2.jxe:/r '"$BLOCK" "$T/stock.sh" > "$T/mod.sh"
 sed 's#^\(BOOTCLASSPATH=.*\)$#\1\
@@ -230,23 +230,6 @@ for damage in 'printf x >> "$C/libmcn_dm.so"' ': > "$C/libmcn_sal.so"; manifest'
     [ "$(gem mcn_install.sh)" = failed ] && stock && [ ! -e "$W/lib" ] && [ ! -e "$W/var/backup" ] ||
         bad "install FAILED: damaged package accepted ($damage)"
 done
-
-# The repository's source tree (no MANIFEST, no libraries) in the first slot: Install takes the
-# package from the other card; with the source tree alone it stops and says what it found.
-source_tree() {
-    S="$W/media/mp000/custom/mst2-cluster-nav"
-    mkdir -p "$S"
-    cp "$PKG/runHMI.block" "$PKG/bundles.block" "$PKG/preload.list" "$S/"
-}
-unit
-source_tree
-[ "$(gem mcn_install.sh)" = ok ] && cmp -s "$W/lib/libmcn_sal.so" "$C/libmcn_sal.so" ||
-    bad "install FAILED: took the source tree over the package: $(cat "$W/out")"
-unit
-source_tree
-rm -r "$W/media/mp001/custom"
-[ "$(gem mcn_install.sh)" = failed ] && stock && grep -q "^preload.list$" "$W/out" &&
-    grep -q "(not 'Source code')" "$W/out" || bad "install FAILED: source tree not explained"
 
 # No backup on the card (full, write-protected): nothing changed.
 unit

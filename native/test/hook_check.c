@@ -6,8 +6,12 @@
 #include "mcn_hook.h"
 
 int puts(const char *);
+#ifdef _WIN32
+__INTPTR_TYPE__ _spawnv(int mode, const char *path, const char *const *argv);
+#else
 int fork(void);
 int waitpid(int pid, int *status, int options);
+#endif
 void exit(int status);
 const char mcn_component[] = "check";
 
@@ -161,32 +165,59 @@ static int boot(const char *a, const char *b)
     return mcn_active();
 }
 
-/* In a child: the block check runs once per process. */
-static void without_block(const char *hmi)
-{
-    int status = 1, pid = fork();
+static const char *const missing_blocks[] = {
+    NULL,
+    "#!/bin/ksh\nBOOTCLASSPATH=x\necho run\n",
+    "#!/bin/ksh\nsed '/^# >>> mst2-cluster-nav/d'\n", /* marker inside a command */
+};
 
-    if (pid == 0) {
-        memset(fs, 0, sizeof(fs));
-        if (hmi) {
-            put(MCN_HMI_SH, hmi);
-        }
-        put(MCN_DIR "/enabled", "");
-        put(MCN_BOOT_MARK, "");
-        exit(mcn_active() ? 1 : 0);
+static int without_block_child(const char *hmi)
+{
+    memset(fs, 0, sizeof(fs));
+    if (hmi) {
+        put(MCN_HMI_SH, hmi);
     }
-    CHECK(pid > 0 && waitpid(pid, &status, 0) == pid && status == 0);
+    put(MCN_DIR "/enabled", "");
+    put(MCN_BOOT_MARK, "");
+    return mcn_active() ? 1 : 0;
 }
 
-int main(void)
+/* In a child: the block check runs once per process. */
+static void without_block(const char *self, unsigned test)
+{
+#ifdef _WIN32
+    char choice[] = {(char)('0' + test), 0};
+    const char *const args[] = {self, choice, NULL};
+
+    CHECK(_spawnv(0, self, args) == 0); /* _P_WAIT */
+#else
+    int status = 1, pid = fork();
+
+    (void)self;
+    if (pid == 0) {
+        exit(without_block_child(missing_blocks[test]));
+    }
+    CHECK(pid > 0 && waitpid(pid, &status, 0) == pid && status == 0);
+#endif
+}
+
+int main(int argc, char **argv)
 {
     char busy[96], strikes[96], off[96];
+    unsigned test;
 
+#ifdef _WIN32
+    if (argc == 2) {
+        CHECK(argv[1][0] >= '0' && argv[1][0] <= '2' && argv[1][1] == '\0');
+        return without_block_child(missing_blocks[argv[1][0] - '0']);
+    }
+#else
+    (void)argc;
+#endif
     /* runHMI.sh without our block (a tool restored an old copy, or a firmware update). */
-    without_block(NULL);
-    without_block("#!/bin/ksh\nBOOTCLASSPATH=x\necho run\n");
-    /* The marker inside a command is not the block's opening line. */
-    without_block("#!/bin/ksh\nsed '/^# >>> mst2-cluster-nav/d'\n");
+    for (test = 0; test < sizeof(missing_blocks) / sizeof(missing_blocks[0]); ++test) {
+        without_block(argv[0], test);
+    }
 
     CHECK(boot(MCN_DIR "/trial", NULL));
     CHECK(find(MCN_DIR "/trial") < 0 && find(MCN_TRIAL_MARK) >= 0);

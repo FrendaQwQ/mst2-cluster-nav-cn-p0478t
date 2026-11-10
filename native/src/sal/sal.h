@@ -9,32 +9,19 @@
 
 #include "cf.h"
 #include "mcn_hook.h"
+#include "mcn_transcode.h"
 
-/*
- * The cluster's map window (FPK_E MOST video, mQbEMU research notes, cluster-nav-mod.md):
- * 1010 x 376 pixels. The cluster most likely stretches it over its whole 1280 x 480 LG 10.25"
- * panel (its 1010 x 376 and 1280 x 480 window masks match after that scale), so the physical
- * size offered is the panel's, about 244 x 91 mm. In the CarPlay Simulator (Yandex Maps) 192 to
- * 360 mm wide drew the same picture: the size only has to keep the aspect ratio.
- */
-#define MCN_CLUSTER_WIDTH 1010
-#define MCN_CLUSTER_HEIGHT 376
+/* The 791D CarPlay canvas and UI scale follow the vehicle-tested P0478T Patch1 profile. */
+#define MCN_CLUSTER_WIDTH MCN_TC_VIS_W
+#define MCN_CLUSTER_HEIGHT MCN_TC_VIS_H
 #define MCN_CLUSTER_WIDTH_MM 244
-#define MCN_CLUSTER_HEIGHT_MM 91
+#define MCN_CLUSTER_HEIGHT_MM 146
 #define MCN_CLUSTER_FPS 25
-/*
- * One safe area for every cluster view (mQbEMU research notes, gc-map-views.md: the cluster
- * scales the frame to 1244 x 464 at (18, 8); views Klassisch, Erweitert, Modern show the map).
- * x 377..634 is what the round dials of Klassisch leave free, which is also visible in the wider
- * views; y 56..306 is below the status bar (panel lines 0..72: compass, clock or speed sign,
- * temperature) and above the bottom bar (panel 385..420). The height matters to the phone: in
- * the CarPlay Simulator Yandex Maps drew its maneuver card only with about 250 lines (186 or
- * 212 at this width: no card), and in this narrow area it keeps the car marker in the middle.
- */
-#define MCN_SAFE_X 377
-#define MCN_SAFE_Y 56
-#define MCN_SAFE_WIDTH 257
-#define MCN_SAFE_HEIGHT 250
+/* Patch1 SafeArea, in pixels of the 800x480 canvas. */
+#define MCN_SAFE_X 171
+#define MCN_SAFE_Y 71
+#define MCN_SAFE_WIDTH 460
+#define MCN_SAFE_HEIGHT 347
 /* Ours; must differ from the main screen's, which is how the phone tells 111 from 110. */
 #define MCN_CLUSTER_UUID "4D434E00-0001-4000-8000-00000000006F"
 /*
@@ -102,8 +89,8 @@ void mcn_route_session(int up);
 #define MCN_RATE_FILE MCN_DIR "/kbps"
 /*
  * CarPlay zoom-out factor x1000 (MCN_ZOOM_FILE, "1000".."1900"): 1000 = off, the phone encodes
- * 1010x376 and stream.c forwards it 1:1; above that the phone is offered a proportionally bigger
- * alt screen (so it draws more map) and the stream is re-encoded down to 1010x376 (sal/vpu.c).
+ * 800x480 and stream.c forwards it 1:1; above that the phone is offered a proportionally bigger
+ * alt screen (so it draws more map) and the stream is re-encoded down to 800x480 (sal/vpu.c).
  */
 #define MCN_ZOOM_FILE MCN_DIR "/zoom"
 /*

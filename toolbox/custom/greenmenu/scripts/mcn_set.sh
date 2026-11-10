@@ -49,10 +49,10 @@ case "$1" in
       cp $card/mst2-cluster-nav-display.txt $MCN/display
       echo "Cluster geometry: $(cat $MCN/display) ($NEXT)"
     else
-      echo "Put mst2-cluster-nav-display.txt on the card, e.g. 244 91 377 56 257 250"
+      echo "Put mst2-cluster-nav-display.txt on the card, e.g. 244 146 171 71 460 347"
     fi
     ;;
-  display-reset) rm -f $MCN/display; echo "Cluster geometry: default (244 91 377 56 257 250)" ;;
+  display-reset) rm -f $MCN/display; echo "Cluster geometry: default (244 146 171 71 460 347)" ;;
   zoom-off) rm -f $MCN/zoom; echo "CarPlay cluster map zoom-out off ($NEXT)" ;;
   zoom1250|zoom1500) echo ${1#zoom} > $MCN/zoom; echo "CarPlay cluster map zoom-out x${1#zoom} / 1000 ($NEXT)" ;;
   status) ;;

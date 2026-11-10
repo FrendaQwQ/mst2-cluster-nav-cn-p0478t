@@ -2,23 +2,15 @@
  * mst2-cluster-nav - phone navigation on the MQB instrument cluster.
  * Copyright (c) 2026 Anton Perk. CC BY-NC-SA 4.0, see LICENSE and NOTICE.
  *
- * Turning a phone's cluster video into the 1010x376 H.264 the FPK_E cluster decodes.
- *
- * The cluster's VCP3 decoder takes a coded frame no larger than 1024x480 and shows a cropped
- * width of exactly 1010, cropped on the right and bottom only (fpke gc-rivp, decoder research);
- * the stock DisplayManager encoder makes it as 1024x384 coded, cropped {right 14, bottom 8} to
- * 1010x376. CarPlay lets the phone encode exactly that, so stream.c forwards it untouched. Two
- * cases need the head unit to re-encode instead, both producing the same 1024x384/crop-1010x376:
- *   - Android Auto: the phone only encodes 800x480 / 1280x720 / 1920x1080, so we ask for
- *     1280x720 with margins that leave a 1024x384 content area at an aligned origin, decode it
- *     and encode that rectangle 1:1 (no scaling).
- *   - CarPlay zoom-out: to show more map we advertise an alt screen factor N bigger (the phone
- *     then draws a wider view, confirmed in the CarPlay Simulator), decode it and scale down to
- *     1010x376.
+ * The CN P0478T/791D output canvas matches the 800x480 CarPlay picture of Patch1. The whole
+ * picture fits in macroblocks, so its coded and visible sizes are equal. With zoom-out off,
+ * stream.c forwards the phone's H.264. The two transcoded paths use the same output canvas:
+ *   - Android Auto: keep the 1280x720 video mode and take the centered, aligned 800x480 area.
+ *   - CarPlay zoom-out: offer a bigger screen, then scale its decoded picture down to 800x480.
  * The decode and encode run on the i.MX6 VPU, the zoom-out scale on the CPU (the GC320 through
  * Screen only point-samples, common/scale.c). mcn_geom() is the arithmetic that picks the request
  * size and the source rectangle; it is host-tested. The backend (sal/vpu.c) turns phone access
- * units into 1010x376 ones, published through include/mcn_video.h exactly as stream.c does.
+ * units into 800x480 ones, published through include/mcn_video.h exactly as stream.c does.
  */
 #ifndef MCN_TRANSCODE_H
 #define MCN_TRANSCODE_H
@@ -29,24 +21,24 @@
 #include "mcn_qnx.h"
 #endif
 
-/* The cluster's coded frame and its cropped, visible picture. */
-#define MCN_TC_CODED_W 1024
-#define MCN_TC_CODED_H 384
-#define MCN_TC_VIS_W   1010
-#define MCN_TC_VIS_H   376
-#define MCN_TC_CROP_RIGHT  (MCN_TC_CODED_W - MCN_TC_VIS_W) /* 14 */
-#define MCN_TC_CROP_BOTTOM (MCN_TC_CODED_H - MCN_TC_VIS_H) /* 8 */
+/* The visible 791D picture is already macroblock-aligned. */
+#define MCN_TC_VIS_W   800
+#define MCN_TC_VIS_H   480
+#define MCN_TC_CODED_W MCN_TC_VIS_W
+#define MCN_TC_CODED_H MCN_TC_VIS_H
+#define MCN_TC_CROP_RIGHT  (MCN_TC_CODED_W - MCN_TC_VIS_W)
+#define MCN_TC_CROP_BOTTOM (MCN_TC_CODED_H - MCN_TC_VIS_H)
 
 enum mcn_tc_mode {
     MCN_TC_OFF = 0,        /* no transcode: CarPlay 1:1, stream.c forwards the phone's frames */
     MCN_TC_AA,             /* Android Auto: crop a 1:1 content area out of a 1280x720 frame */
-    MCN_TC_CARPLAY_ZOOM    /* CarPlay zoom-out: scale an N-times bigger frame down to 1010x376 */
+    MCN_TC_CARPLAY_ZOOM    /* CarPlay zoom-out: scale an N-times bigger frame to the canvas */
 };
 
 /*
- * What to ask the phone for and how to turn its frame into 1010x376. Pixel offsets and sizes
+ * What to ask the phone for and how to turn its frame into 800x480. Pixel offsets and sizes
  * meant for the VPU are multiples of 16 across and 2 down (chroma); the advertised screen keeps
- * the 1010:376 aspect so the phone does not letterbox on its own.
+ * the canvas aspect apart from the required alignment.
  */
 struct mcn_geom {
     enum mcn_tc_mode mode;
@@ -54,7 +46,7 @@ struct mcn_geom {
     int margin_w, margin_h;    /* Android Auto width/height margin (0 for zoom) */
     int src_x, src_y;          /* top-left of the content rectangle in the decoded frame */
     int src_w, src_h;          /* its size: equal to the coded target, or scaled down to it */
-    int scale;                 /* 1 if src must be scaled to 1024x384, 0 if copied 1:1 */
+    int scale;                 /* 1 if src must be scaled to the canvas, 0 if copied 1:1 */
 };
 
 /*
@@ -72,8 +64,8 @@ int mcn_geom(enum mcn_tc_mode mode, int factor_milli, struct mcn_geom *g);
 int mcn_aa_sdr(uint8_t *out, unsigned cap, int video_id, int input_id, const struct mcn_geom *g);
 
 /*
- * The VPU transcoder (sal/vpu.c): decode the phone's H.264 and re-encode the 1010x376 the
- * cluster takes, publishing into video. mcn_vpu_open returns the owner token of a fresh
+ * The VPU transcoder (sal/vpu.c): decode the phone's H.264 and re-encode it for the 791D,
+ * publishing into video. mcn_vpu_open returns the owner token of a fresh
  * transcoder (non-zero), or 0 when the VPU is not ready (the caller then publishes nothing: the
  * cluster stays stock, never the mod). Only the current token's holder feeds or closes; a stale
  * token (its transcoder already closed or replaced) is a no-op, so a receiver that ends late

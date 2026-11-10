@@ -1,0 +1,7 @@
+Based on mst2-cluster-nav v1.1.0 by Anton Perk (perkthefox).
+Original project: https://github.com/perkthefox/mst2-cluster-nav
+Upstream commit: 5ad10508ec140d77d46dee1e716b4a25de4dca94
+
+CN P0478T / VW 791D adaptation by FrendaQwQ with assistance from OpenAI Codex.
+Changes include the P0478T DisplayManager call site, HMI build target and 791D display/transcode geometry.
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International. See LICENSE and NOTICE.

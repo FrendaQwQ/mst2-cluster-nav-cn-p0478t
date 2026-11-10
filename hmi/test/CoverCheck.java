@@ -92,6 +92,13 @@ public final class CoverCheck implements BAPStageContext, PropertyListener {
         /* The context in front of the data pool, driven by "media=" datagrams. */
         File art = File.createTempFile("cover", ".jpg");
         art.deleteOnExit();
+        String artPath = art.getPath();
+        if (File.separatorChar == '\\') {
+            /* The Windows test runs on the same drive as its temp directory. Use a
+             * slash-rooted path so the datagram follows the target's art=/ contract. */
+            artPath = artPath.substring(2).replace('\\', '/');
+            expect("Windows cover fixture", artPath.startsWith("/") && new File(artPath).isFile());
+        }
         CoverCheck pool = new CoverCheck();
         Constructor c = ClusterCover.class.getDeclaredConstructor(
             new Class[] {BAPStage.class, BAPStageContext.class});
@@ -103,7 +110,7 @@ public final class CoverCheck implements BAPStageContext, PropertyListener {
 
         /* No picture server (host: no event dispatcher): never USB, else a stale cover. */
         ClusterCover.installCoverArt();
-        NowPlaying.received("media=1\ntitle=Song\nart=" + art.getPath() + "\n");
+        NowPlaying.received("media=1\ntitle=Song\nart=" + artPath + "\n");
         cover.getPropertyListener(null).statusProperty(source(cp), null);
         expect("no picture server: stock", ((ActiveSource_Status)pool.sent).sourceType == cp
             && ClusterCover.activeArt() == null);
@@ -129,8 +136,8 @@ public final class CoverCheck implements BAPStageContext, PropertyListener {
         expect("picture server started", ClusterCover.useCoverArt(coverArt));
         MediaCoverArtService media = (MediaCoverArtService)mediaField.get(coverArt);
         expect("media service wrapped", media != stockMedia);
-        expect("art named", art.getPath().equals(ClusterCover.activeArt())
-            && art.getPath().equals(media.getCoverArt().getUrl()) && media.isCoverValid());
+        expect("art named", artPath.equals(ClusterCover.activeArt())
+            && artPath.equals(media.getCoverArt().getUrl()) && media.isCoverValid());
         cover.getPropertyListener(null).statusProperty(source(cp), null);
         expect("CarPlay track with art: USB", ((ActiveSource_Status)pool.sent).sourceType == 19);
         cover.getPropertyListener(null).statusProperty(handle(), null);
@@ -150,19 +157,19 @@ public final class CoverCheck implements BAPStageContext, PropertyListener {
         NowPlaying.received("media=1\ntitle=Song\nart=/no/such/cover.jpg\n");
         expect("missing file: no art", ClusterCover.activeArt() == null);
 
-        NowPlaying.received("media=1\ntitle=Song\nart=" + art.getPath() + "\n");
+        NowPlaying.received("media=1\ntitle=Song\nart=" + artPath + "\n");
         cover.getPropertyListener(null).statusProperty(source(cp), null);
         expect("art again: USB", ((ActiveSource_Status)pool.sent).sourceType == 19);
         NowPlaying.received("media=0");
         cover.getPropertyListener(null).statusProperty(source(cp), null);
         expect("media=0: stock", ((ActiveSource_Status)pool.sent).sourceType == cp);
 
-        NowPlaying.received("media=1\ntitle=Song\nart=" + art.getPath() + "\n");
+        NowPlaying.received("media=1\ntitle=Song\nart=" + artPath + "\n");
         NowPlaying.tick(System.currentTimeMillis() + 4000);
         cover.getPropertyListener(null).statusProperty(source(cp), null);
         expect("timeout: stock", ((ActiveSource_Status)pool.sent).sourceType == cp);
 
-        NowPlaying.received("media=1\ntitle=Track\nsrc=aa\nart=" + art.getPath() + "\n");
+        NowPlaying.received("media=1\ntitle=Track\nsrc=aa\nart=" + artPath + "\n");
         cover.getPropertyListener(null).statusProperty(source(cp), null);
         expect("Android Auto art not on CarPlay",
             ((ActiveSource_Status)pool.sent).sourceType == cp);
@@ -175,8 +182,8 @@ public final class CoverCheck implements BAPStageContext, PropertyListener {
 
         /* Kill switch: PhoneLink clears the track and drops later media datagrams. */
         cover.getPropertyListener(null).statusProperty(source(cp), null);
-        NowPlaying.received("media=1\ntitle=Song\nart=" + art.getPath() + "\n");
-        expect("before the kill switch", art.getPath().equals(ClusterCover.activeArt()));
+        NowPlaying.received("media=1\ntitle=Song\nart=" + artPath + "\n");
+        expect("before the kill switch", artPath.equals(ClusterCover.activeArt()));
         Field off = PhoneLink.class.getDeclaredField("off");
         off.setAccessible(true);
         off.setBoolean(null, true);
@@ -184,7 +191,7 @@ public final class CoverCheck implements BAPStageContext, PropertyListener {
         Method received = PhoneLink.class.getDeclaredMethod("received", new Class[] {String.class});
         received.setAccessible(true);
         received.invoke(new PhoneLink(),
-            new Object[] {"media=1\ntitle=Song\nart=" + art.getPath() + "\n"});
+            new Object[] {"media=1\ntitle=Song\nart=" + artPath + "\n"});
         cover.getPropertyListener(null).statusProperty(source(cp), null);
         expect("kill switch: stock", ((ActiveSource_Status)pool.sent).sourceType == cp
             && ClusterCover.activeArt() == null);
@@ -206,7 +213,7 @@ public final class CoverCheck implements BAPStageContext, PropertyListener {
         expect("contexts restored", context.get(activeSource) == pool
             && context.get(stationHandle) == pool);
         expect("media service restored", mediaField.get(coverArt) == stockMedia);
-        NowPlaying.received("media=1\ntitle=Song\nart=" + art.getPath() + "\n");
+        NowPlaying.received("media=1\ntitle=Song\nart=" + artPath + "\n");
         expect("after uninstall: no art", ClusterCover.activeArt() == null);
         NowPlaying.clear();
         System.out.println("cover: USB substitution for CarPlay and Android Auto, stock source,"

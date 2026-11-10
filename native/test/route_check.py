@@ -12,8 +12,10 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'build/check'
 OUT.mkdir(parents=True, exist_ok=True)
-LIB = OUT / 'route.dylib'
-subprocess.run(['clang', '-shared', '-fPIC', '-DMCN_HOST', '-std=c99', '-Wall', '-Wextra',
+WINDOWS = os.name == 'nt'
+LIB = OUT / ('route.dll' if WINDOWS else 'route.dylib')
+HOST_LINK = ['-Wl,--export-all-symbols'] if WINDOWS else ['-fPIC']
+subprocess.run([os.getenv('CC', 'clang'), '-shared', *HOST_LINK, '-DMCN_HOST', '-std=c99', '-Wall', '-Wextra',
                 '-Werror', '-fsanitize=undefined', '-fno-sanitize-recover=all',
                 '-I' + str(ROOT / 'include'), str(ROOT / 'src/common/route.c'),
                 str(ROOT / 'src/common/media.c'), str(ROOT / 'src/common/aa.c'),
@@ -21,6 +23,9 @@ subprocess.run(['clang', '-shared', '-fPIC', '-DMCN_HOST', '-std=c99', '-Wall', 
                 str(ROOT / 'src/common/scale.c'),
                 '-o', str(LIB)], check=True)
 lib = C.CDLL(str(LIB))
+if WINDOWS:
+    # QNX uses binary file I/O. Match it for cover bytes in this host test process.
+    assert C.CDLL('ucrtbase.dll')._set_fmode(0x8000) == 0  # _O_BINARY
 lib.mcn_route_reset.argtypes = [C.c_void_p]
 lib.mcn_route_log_reset.argtypes = [C.c_void_p]
 lib.mcn_route_message.argtypes = [C.c_void_p, C.c_char_p, C.c_uint, C.c_uint]
@@ -448,15 +453,15 @@ class RouteCheck(unittest.TestCase):
         self.assertEqual(lib.mcn_geom(0, 0, C.byref(Geom())), -1)  # OFF has no geometry
         aa = self.geom(1)  # MCN_TC_AA
         self.assertEqual((aa.req_w, aa.req_h), (1280, 720))
-        self.assertEqual((aa.src_x, aa.src_y, aa.src_w, aa.src_h), (128, 168, 1024, 384))
+        self.assertEqual((aa.src_x, aa.src_y, aa.src_w, aa.src_h), (240, 120, 800, 480))
         self.assertEqual(aa.scale, 0)
         # content rectangle fits inside the frame and is VPU-aligned
         self.assertEqual(aa.src_x % 16, 0)
         self.assertEqual(aa.src_y % 2, 0)
         self.assertLessEqual(aa.src_x + aa.src_w, aa.req_w)
         self.assertLessEqual(aa.src_y + aa.src_h, aa.req_h)
-        for factor, want in ((1000, (1024, 376)), (1300, (1328, 488)), (1500, (1520, 564)),
-                             (1900, (1920, 714)), (3000, (1920, 714))):
+        for factor, want in ((1000, (800, 480)), (1250, (1008, 600)), (1300, (1040, 624)),
+                             (1500, (1200, 720)), (1900, (1520, 912)), (3000, (1520, 912))):
             z = self.geom(2, factor)  # clamped to 1900 at 3000
             self.assertEqual((z.req_w, z.req_h), want)
             self.assertEqual(z.req_w % 16, 0)
@@ -554,7 +559,7 @@ class RouteCheck(unittest.TestCase):
         self.assertEqual(self.v(ms[6]), 1)            # display_id
         self.assertEqual(self.v(ms[7]), 1)            # display_type = CLUSTER
         vc = self.pb(ms[4][0])
-        self.assertEqual([self.v(vc[k]) for k in (1, 2, 3, 4)], [2, 2, 256, 336])  # res,fps,margins
+        self.assertEqual([self.v(vc[k]) for k in (1, 2, 3, 4)], [2, 2, 480, 240])  # res,fps,margins
         self.assertEqual(self.v(inp[1]), 6)           # input channel id
         iss = self.pb(inp[4][0])
         self.assertEqual(self.v(iss[5]), 1)           # input display_id
@@ -831,10 +836,18 @@ class CoverCheck(unittest.TestCase):
 
     def setUp(self):
         # A short directory: the path must fit MCN_COVER_PATH, as /dev/shmem does.
-        self.dir = tempfile.mkdtemp(dir='/tmp')
+        if WINDOWS:
+            path = Path(tempfile.mkdtemp(dir=Path.cwd())).resolve()
+            assert path.parent == Path.cwd().resolve()
+            self.dir = path.name
+        else:
+            self.dir = tempfile.mkdtemp(dir='/tmp')
 
     def tearDown(self):
-        shutil.rmtree(self.dir)
+        path = Path(self.dir).resolve()
+        if WINDOWS:
+            assert path.parent == Path.cwd().resolve()
+        shutil.rmtree(path)
 
     def save(self, data, now=1000):
         out = C.create_string_buffer(96)
